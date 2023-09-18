@@ -1,3 +1,9 @@
+@import url("normalize.min.css");
+@import url("reset.min.css");
+@import url("header.css");
+@import url("main.css");
+@import url("footer.css");
+
 html {
    margin: 0;
    padding: 0;
