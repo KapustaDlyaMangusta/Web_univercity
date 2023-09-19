@@ -5,25 +5,29 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Landing page</title>
-   <link rel="stylesheet" href="styles/base.css">
+   <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
    <header class="header">
+      <div class="header__menu" onclick="toggleMenu()">
+         <img src="images/menu_icon.svg" alt="Menu icon" />
+      </div>
+
       <h2 class="header__title dark-text">Landie</h2>
 
-      <nav class="header__navigation navigation">
+      <nav class="header__navigation navigation" id="navigationMenu">
          <ul>
             <li class="navigation__item">
-               <a href="#" class="navigation__link">Home</a>
+               <a href="" class="navigation__link">Home</a>
             </li>
 
             <li class="navigation__item">
-               <a href="#" class="navigation__link">About</a>
+               <a href="" class="navigation__link">About</a>
             </li>
 
             <li class="navigation__item">
-               <a href="#" class="navigation__link">Pricing</a>
+               <a href="" class="navigation__link">Pricing</a>
             </li>
          </ul>
 
@@ -50,7 +54,7 @@
                <h5 class="subsection__title">Title Goes Here</h5>
 
                <span class="subsection__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                  ligula eget dolor. </p>
+                  ligula eget dolor. </span>
             </div>
 
             <div class="subsections__item subsection">
@@ -59,7 +63,7 @@
                <h5 class="subsection__title">Title Goes Here</h5>
 
                <span class="subsection__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                  ligula eget dolor. </p>
+                  ligula eget dolor. </span>
             </div>
          </div>
       </section>
@@ -87,7 +91,7 @@
 
                   <span class="subsection__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
                      commodo
-                     ligula eget dolor. </p>
+                     ligula eget dolor. </span>
                </div>
 
                <div class="subsections__item subsection">
@@ -97,7 +101,7 @@
 
                   <span class="subsection__text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
                      commodo
-                     ligula eget dolor. </p>
+                     ligula eget dolor. </span>
                </div>
             </div>
          </div>
@@ -195,6 +199,8 @@
                alt="social icon" /></a>
       </nav>
    </footer>
+
+   <script src="script.js"></script>
 </body>
 
 </html>

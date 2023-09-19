@@ -1,0 +1,12 @@
+/*** reset and normalize ***/
+@import "normalize.min.css";
+@import "reset.min.css";
+
+/*** global ***/
+@import "global.css";
+
+/*** page sections ***/
+@import "header.css";
+@import "start-screen.css";
+@import "main.css";
+@import "footer.css";
