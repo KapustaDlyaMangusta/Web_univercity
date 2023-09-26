@@ -1,4 +1,4 @@
-const planes = [
+export let planes = [
     {
         fuelCapacityLiters: 50000,
         name: 'Boeing 747',
@@ -61,11 +61,6 @@ const planes = [
     }
 ];
 
-document.addEventListener("DOMContentLoaded", function () {
-   setItems();
-});
-
-
 const planeList = document.getElementById('itemsList');
 const searchBar = document.getElementById('search');
 const selectBar = document.getElementById('select');
@@ -73,7 +68,7 @@ const selectBar = document.getElementById('select');
 let sortField = selectBar.value;
 let searchQuery = searchBar.value.toLowerCase();
 
-function setItems(){
+export function setItems(){
     planeList.innerHTML = '';
 
     let items = planes;
@@ -129,3 +124,7 @@ function alertTotalPassengersCapacity(){
     alert(`Total Passenger Capacity: ${totalPassengerCapacity}`);
 }
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    setItems();
+});
