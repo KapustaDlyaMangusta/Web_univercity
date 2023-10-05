@@ -1,5 +1,6 @@
 import {showErrors, validateForm} from "./form.js";
 import {renderItems} from "./myPlanes.js";
+import { updatePlane } from "./planes.api.js";
 
 const editPlaneForm = {
     fields: {
@@ -78,7 +79,7 @@ export function showEditPlaneForm(editPlane){
 
             <div class="mb-3">
                 <label for="editPassengersCount" class="form-label fs-5">PassengersCount</label>
-                <input type="number" class="form-control fs-5" name="passengersCount" id="editPassengersCount" value="${plane.passengerCount}"/>
+                <input type="number" class="form-control fs-5" name="passengersCount" id="editPassengersCount" value="${plane.passengersCount}"/>
             </div>
 
             <div class="mb-3">
@@ -110,7 +111,7 @@ export function showEditPlaneForm(editPlane){
 function updateFormValues(){
     editPlaneForm.fields.name.value = plane.name;
     editPlaneForm.fields.fuelCapacityLiters.value  = plane.fuelCapacityLiters;
-    editPlaneForm.fields.passengersCount.value  = plane.passengerCount;
+    editPlaneForm.fields.passengersCount.value  = plane.passengersCount;
     editPlaneForm.fields.description.value  = plane.description;
 }
 
@@ -129,7 +130,7 @@ function bindInputs(event) {
     editPlaneForm.fields[name].value = target.value;
 }
 
-function submitForm(event) {
+async function submitForm(event) {
     event.preventDefault();
 
     if (!validateForm(editPlaneForm)) {
@@ -139,11 +140,12 @@ function submitForm(event) {
 
     plane.fuelCapacityLiters = editPlaneForm.fields.fuelCapacityLiters.value;
     plane.name = editPlaneForm.fields.name.value;
-    plane.passengerCount = editPlaneForm.fields.passengersCount.value;
+    plane.passengersCount = editPlaneForm.fields.passengersCount.value;
     plane.description = editPlaneForm.fields.description.value;
 
     modalInstance.hide();
-    plane = {};
 
-    renderItems();
+    await updatePlane(plane);
+
+    await renderItems();
 }
