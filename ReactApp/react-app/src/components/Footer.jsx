@@ -1,12 +1,12 @@
 import React from 'react';
-import Logo from '../../../../components/Logo';
+import Logo from './Logo';
 
 import SocialIcons from './SocialIcons';
-import Divider from '../../../../components/Divider';
+import Divider from './Divider';
 
 const Footer = () => {
   return (
-    <div className='flex flex-col px-24 py-8 items-center'>
+    <div className='flex flex-col py-8 items-center'>
       <div className='flex justify-between items-center w-full'>
         <div className='w-1/3'>
           <h4 className='text-xl font-bold'>Branding stuff</h4>

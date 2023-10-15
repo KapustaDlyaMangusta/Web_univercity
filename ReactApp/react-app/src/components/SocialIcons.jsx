@@ -1,8 +1,8 @@
 import React from 'react';
 
-import linkedIn from '../../../../assets/images/icon-linkedin.svg';
-import facebook from '../../../../assets/images/icon-facebook.svg';
-import telegram from '../../../../assets/images/icon-telegram.svg';
+import linkedIn from '../assets/images/icon-linkedin.svg';
+import facebook from '../assets/images/icon-facebook.svg';
+import telegram from '../assets/images/icon-telegram.svg';
 
 const SocialIcons = () => {
   const iconsClassName = 'w-10 h-10';

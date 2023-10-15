@@ -1,12 +1,12 @@
 import React from 'react';
-import carrot from "../../../../assets/images/carrot_header_image.jpg";
+import carrot from "../../../assets/images/carrot_header_image.jpg";
 
 const Banner = () => {
   const listItemClassName = 'text-2xl';
 
   return (
     <div className="flex w-full h-auto gap-36">
-      <img src={carrot} className="w-auto h-2/5" alt="Carrots"></img>
+      <img src={carrot} className="w-auto" style={{height: '530px'}} alt="Carrots"></img>
 
       <div className="flex flex-col gap-12">
         <h1 className="text-5xl font-bold">Morkva Enterprise</h1>

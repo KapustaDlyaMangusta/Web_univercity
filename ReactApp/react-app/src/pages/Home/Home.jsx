@@ -1,17 +1,14 @@
 import React from 'react';
 
-import Header from "./components/Header/Header";
-import LastNews from "./components/News/LastNews";
-import Footer from './components/Footer/Footer';
+import LastNews from "./components/LastNews";
+import Banner from './components/Banner';
 
 const Home = () => {
   return (
-    <div className="flex flex-col gap-28">
-      <Header/>
+    <div className="flex flex-col gap-16">
+      <Banner/>
 
       <LastNews/>
-
-      <Footer/>
     </div>
   );
 };
