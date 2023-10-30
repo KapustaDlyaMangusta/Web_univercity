@@ -3,7 +3,7 @@ import React from 'react';
 import LastNews from "./components/LastNews";
 import Banner from './components/Banner';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="flex flex-col gap-16">
       <Banner/>
@@ -13,4 +13,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

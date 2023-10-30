@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.quantity-input-control .MuiInputBase-input {
+    text-align: center !important;
+    font-size: 26px;
+    font-weight: bold;
+}

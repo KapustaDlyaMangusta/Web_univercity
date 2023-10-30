@@ -11,13 +11,13 @@ const Navbar = () => {
       <nav className="w-full">
         <ul className="flex w-full justify-center gap-24">
           <li className={ listItemClassName }>
-            <Link className={ linkClassName } style={ linkStyle } to='/home'>Home</Link>
+            <Link className={ linkClassName } style={ linkStyle } to=''>Home</Link>
           </li>
           <li className={ listItemClassName }>
-            <Link className={ linkClassName } style={ linkStyle } to='/catalog'>Catalog</Link>
+            <Link className={ linkClassName } style={ linkStyle } to='catalog'>Catalog</Link>
           </li>
           <li className={ listItemClassName }>
-            <Link className={ linkClassName } style={ linkStyle } to='/catalog'>Cart</Link>
+            <Link className={ linkClassName } style={ linkStyle } to='catalog'>Cart</Link>
           </li>
         </ul>
       </nav>

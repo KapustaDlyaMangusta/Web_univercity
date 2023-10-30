@@ -1,27 +1,38 @@
-import Home from "./pages/Home/Home";
-import Header from './components/Header';
+import HomePage from "./pages/Home/HomePage";
 import React from 'react';
-import Footer from './components/Footer';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Catalog from './pages/Catalog/Catalog';
-import { Button } from '@mui/material';
+import { createBrowserRouter, Navigate, Route, RouterProvider, Routes } from 'react-router-dom';
+import CatalogPage from './pages/Catalog/CatalogPage';
+import { CatalogContextProvider } from './store/catalog-context';
+import { RootLayout } from './pages/Root';
+import CatalogItemPage from './pages/CatalogItem/CatalogItemPage';
+import ErrorPage from './pages/Other/ErrorPage';
+import NotFoundPage from './pages/Other/NotFoundPage';
 
-function App() {
-  return (
-    <div className='flex flex-col px-24 gap-16 min-h-screen'>
-        <Header/>
-        <div className='flex-grow'>
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout/>,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage/> },
+      {
+        path: 'catalog',
+        children: [
+          {
+            index: true,
+            element:
+              <CatalogContextProvider>
+                <CatalogPage/>
+              </CatalogContextProvider>
+          },
+          { path: ':catalogItemId', element: <CatalogItemPage/> }
+        ]
+      },
+    ]
+  },
+  { path: '*', element: <NotFoundPage/> },
+])
 
-            <Route path="/home" element={<Home />} />
-
-            <Route path="/catalog" element={<Catalog />} />
-          </Routes>
-        </div>
-        <Footer/>
-    </div>
-  );
+export const App = () => {
+  return <RouterProvider router={ router }/>
 }
-
-export default App;
