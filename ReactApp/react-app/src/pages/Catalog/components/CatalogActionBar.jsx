@@ -2,33 +2,7 @@ import React, { useContext } from 'react';
 import { CatalogContext } from '../../../store/catalog-context';
 import { SelectControl } from '../../../components/SelectControl';
 import { TextField } from '@mui/material';
-
-const sortSelectOptions = [
-  {
-    title: 'Name',
-    value: 'title'
-  },
-  {
-    title: 'Price',
-    value: 'price'
-  },
-  {
-    title: 'Country',
-    value: 'country'
-  }
-];
-
-const filterSelectOptions = [
-  {
-    title: 'Favorite',
-    value: 'favorite'
-  },
-  {
-    title: 'Hot Season',
-    value: 'hotseason'
-  },
-];
-
+import { filterSelectOptions, sortSelectOptions } from '../../../utils/data/catalog-actions.data';
 const CatalogActionBar = () => {
   const catalogCtx = useContext(CatalogContext);
 

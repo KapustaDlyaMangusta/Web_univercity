@@ -19,6 +19,65 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+#region ReactApp
+
+app.MapGet("/morkva/news/latest", () => NewsData.News.Take(3));
+app.MapGet("/morkva/news", () => NewsData.News);
+
+app.MapGet("/morkva/carrots", (
+    [FromQuery(Name = "q")] string searchQuery,
+    [FromQuery(Name = "f")] string filterOption,
+    [FromQuery(Name = "s")] string sortField) =>
+{
+    var carrots = CarrotsData.Carrots;
+
+    carrots = filterOption switch
+    {
+        "favourite" => carrots.Where(c => c.IsFavourite).ToList(),
+        "hotseason" => carrots.Where(c => c.IsHotSeason).ToList(),
+        _ => carrots
+    };
+
+    if (!string.IsNullOrWhiteSpace(searchQuery))
+        carrots = carrots.Where(carrot =>
+                carrot.Title.ToLower().Contains(searchQuery.ToLower()))
+            .ToList();
+
+    if (!string.IsNullOrWhiteSpace(sortField))
+        carrots = sortField.ToLower() switch
+        {
+            "title" => carrots.OrderBy(p => p.Title).ToList(),
+            "price" => carrots.OrderBy(p => p.Price).ToList(),
+            "country" => carrots.OrderBy(p => p.Country).ToList(),
+            _ => carrots
+        };
+
+    return carrots.Select(carrot => new CarrotPreviewDto
+    {
+        Id = carrot.Id,
+        Title = carrot.Title,
+        Country = carrot.Country,
+        ImageUrl = carrot.ImageUrl,
+        Price = carrot.Price,
+        IsFavourite = carrot.IsFavourite,
+        IsHotSeason = carrot.IsHotSeason
+    }).ToList();
+});
+
+app.MapGet("/morkva/carrots/{id:int}", async (int id) =>
+{
+    var carrot = CarrotsData.Carrots.FirstOrDefault(carrot => carrot.Id == id);
+
+    await Task.Delay(4000);
+    
+    return carrot is not null ? Results.Ok(carrot) : Results.NotFound();
+});
+
+#endregion
+
+
+#region JsPage
+
 app.MapGet("/planes", (
     [FromQuery(Name = "q")] string searchQuery,
     [FromQuery(Name = "s")] string sortField) =>
@@ -27,7 +86,7 @@ app.MapGet("/planes", (
 
     if (!string.IsNullOrWhiteSpace(searchQuery))
         planes = planes.Where(p =>
-            p.Name.ToLower().Contains(searchQuery.ToLower()))
+                p.Name.ToLower().Contains(searchQuery.ToLower()))
             .ToList();
 
     if (!string.IsNullOrWhiteSpace(sortField))
@@ -38,7 +97,7 @@ app.MapGet("/planes", (
             "passengerscount" => planes.OrderBy(p => p.PassengersCount).ToList(),
             _ => planes
         };
-    
+
     return planes;
 });
 
@@ -64,13 +123,17 @@ app.MapPut("/planes", ([FromBody] Plane request) =>
     return Results.Ok();
 });
 
-app.MapDelete("/planes/{id:int}", (int id) => {
+app.MapDelete("/planes/{id:int}", (int id) =>
+{
     var plane = PlanesData.Planes.FirstOrDefault(p => p.PlaneId == id)!;
-    
+
     PlanesData.Planes.Remove(plane);
-    
+
     return Results.Ok();
 });
+
+#endregion
+
 
 app.UseCors(policy =>
     policy
