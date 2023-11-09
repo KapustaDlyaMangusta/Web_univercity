@@ -17,13 +17,11 @@ const useRequestProcessing = (
     async function processRequest() {
       setIsLoading(true);
       try {
-
         const response = await requestFunc();
 
         setIsSuccess(true);
         setResult(response);
       } catch (error) {
-        debugger;
         setError(error.message)
         setIsSuccess(false);
       }
@@ -31,10 +29,6 @@ const useRequestProcessing = (
     }
 
     processRequest();
-
-    return () => {
-
-    }
   }, [requestFunc, ...dependencies]);
 
   return { isLoading, error, isSuccess, result, setResult }

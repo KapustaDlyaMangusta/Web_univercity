@@ -1,9 +1,10 @@
 import React from 'react';
+import ErrorMessage from './ErrorMessage';
 
 const HttpError = () => {
   return (
     <>
-      <p className='text-3xl font-bold'>Something went wrong. Please try again later :(</p>
+      <ErrorMessage error='Something went wrong. Please try again later :('/>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import ItemTypeBar from '../../../components/ItemTypeBar';
 
-const CatalogItemInfo = ({ title, description, country, price, isFavourite, isHotSeason}) => {
+const CatalogItemInfo = ({ title, description, country, price, isFavourite, isHotSeason }) => {
   const itemBlockClassName = 'flex flex-col gap-8';
   const propertyBlockClassName = 'flex justify-between items-center w-full';
   const propertyNameClassName = 'text-xl font-bold';

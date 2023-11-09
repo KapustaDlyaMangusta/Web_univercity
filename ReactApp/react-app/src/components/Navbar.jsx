@@ -17,7 +17,7 @@ const Navbar = () => {
             <Link className={ linkClassName } style={ linkStyle } to='catalog'>Catalog</Link>
           </li>
           <li className={ listItemClassName }>
-            <Link className={ linkClassName } style={ linkStyle } to='catalog'>Cart</Link>
+            <Link className={ linkClassName } style={ linkStyle } to='cart'>Cart</Link>
           </li>
         </ul>
       </nav>

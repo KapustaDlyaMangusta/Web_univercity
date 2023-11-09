@@ -2,11 +2,12 @@ import HomePage from "./pages/Home/HomePage";
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import CatalogPage from './pages/Catalog/CatalogPage';
-import { CatalogContextProvider } from './store/catalog-context';
+import { CatalogContextProvider } from './context/catalog-context';
 import { RootLayout } from './pages/Root';
 import CatalogItemDetailPage, { loader as catalogItemDetailsLoader } from './pages/CatalogItem/CatalogItemDetailPage';
 import ErrorPage from './pages/Other/ErrorPage';
 import NotFoundPage from './pages/Other/NotFoundPage';
+import CartPage from './pages/Cart/CartPage';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,15 @@ const router = createBrowserRouter([
           }
         ]
       },
+      {
+        path: 'cart',
+        children: [
+          {
+            index: true,
+            element: <CartPage />
+          }
+        ]
+      }
     ]
   },
   { path: '*', element: <NotFoundPage/> },

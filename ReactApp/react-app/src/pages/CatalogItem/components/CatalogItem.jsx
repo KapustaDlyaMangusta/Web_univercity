@@ -6,9 +6,12 @@ import QuantityInputControl from '../../../components/QuantityInputControl';
 import { SelectControl } from '../../../components/SelectControl';
 import OutlinedButton from '../../../components/OutlinedButton';
 import FilledButton from '../../../components/FilledButton';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../../store/slices/cart.slice';
 
 const CatalogItem = ({ item }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [kilograms, setKilograms] = useState(1);
   const [type, setType] = useState('');
@@ -24,6 +27,18 @@ const CatalogItem = ({ item }) => {
   }
 
   const goBackClickHandler = () => navigate('..');
+  const addToCartClickHandler = () => {
+    const specific = type === '' ? type : item.specific.find(t => t.value === type).title;
+
+    dispatch(cartActions.addToCart({
+      title: item.title,
+      price: item.price,
+      totalItemPrice: price,
+      quantity: kilograms,
+      specific: specific
+    }))
+    navigate('..');
+  }
 
   return (
     <div className='flex flex-col justify-between h-screen py-10'>
@@ -59,7 +74,7 @@ const CatalogItem = ({ item }) => {
           <span className='text-5xl font-bold text-orange-500'>{ `€${ price }` }</span>
         </div>
 
-        <FilledButton onClick={ goBackClickHandler }>Add to cart</FilledButton>
+        <FilledButton onClick={ addToCartClickHandler }>Add to cart</FilledButton>
       </div>
     </div>
   );

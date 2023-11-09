@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CatalogContext } from '../../../store/catalog-context';
+import { CatalogContext } from '../../../context/catalog-context';
 import { SelectControl } from '../../../components/SelectControl';
 import { TextField } from '@mui/material';
 import { filterSelectOptions, sortSelectOptions } from '../../../utils/data/catalog-actions.data';
