@@ -6,17 +6,13 @@ const initialCartState = {
   cartItems: []
 }
 
-const recalculatePrice = (items) => {
-  return items.reduce((sum, item) => sum + item.totalItemPrice, 0);
-}
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState: initialCartState,
   reducers: {
     addToCart(state, action) {
       state.cartItems.push(action.payload);
-      state.totalPrice = recalculatePrice(state.cartItems);
+      state.totalPrice = state.cartItems.reduce((sum, item) => +sum + +item.totalItemPrice, 0).toFixed(2);
       state.isEmpty = state.cartItems.length === 0;
     },
     removeFromCart(state, action) {
@@ -24,16 +20,28 @@ const cartSlice = createSlice({
         return element.id === action.payload;
       }), 1);
 
-      state.totalPrice = recalculatePrice(state.cartItems);
+      state.totalPrice = state.cartItems.length > 0 ? state.cartItems.reduce((sum, item) => +sum + +item.totalItemPrice, 0).toFixed(2) : 0;
       state.isEmpty = state.cartItems.length === 0;
     },
-    updateItemQuantity(state, action) {
-      const item = state.cartItems.find(item => item.id = action.payload.id);
-      item.quantity = action.payload.quantity;
+    increaseItemQuantity(state,action) {
+      const item = state.cartItems.find(item => item.id = action.payload);
+      item.quantity += 1;
       item.totalItemPrice = item.price * item.quantity;
 
-      state.totalPrice = recalculatePrice(state.cartItems);
+      state.totalPrice = state.cartItems.reduce((sum, item) => +sum + +item.totalItemPrice, 0).toFixed(2);
     },
+    decreaseItemQuantity(state, action){
+      const item = state.cartItems.find(item => item.id = action.payload);
+      item.quantity -= 1;
+      item.totalItemPrice = item.price * item.quantity;
+
+      state.totalPrice = state.cartItems.reduce((sum, item) => +sum + +item.totalItemPrice, 0).toFixed(2);
+    },
+    clear(state, action){
+      state.totalPrice = 0;
+      state.cartItems = [];
+      state.isEmpty = true;
+    }
   }
 })
 

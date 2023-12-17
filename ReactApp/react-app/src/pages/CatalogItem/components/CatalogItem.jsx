@@ -31,11 +31,13 @@ const CatalogItem = ({ item }) => {
     const specific = type === '' ? type : item.specific.find(t => t.value === type).title;
 
     dispatch(cartActions.addToCart({
+      id: item.id,
       title: item.title,
-      price: item.price,
+      price: item.price + (item.specific.find(o => o.value === type)?.bonusPricePerKilogram || 0),
       totalItemPrice: price,
       quantity: kilograms,
-      specific: specific
+      specific: specific,
+      imageUrl: item.imageUrl
     }))
     navigate('..');
   }
@@ -71,7 +73,7 @@ const CatalogItem = ({ item }) => {
 
         <div className='flex gap-20 items-center '>
           <span className='text-3xl font-bold'>Price:</span>
-          <span className='text-5xl font-bold text-orange-500'>{ `€${ price }` }</span>
+          <span className='text-5xl font-bold text-orange-500'>€{ price }</span>
         </div>
 
         <FilledButton onClick={ addToCartClickHandler }>Add to cart</FilledButton>

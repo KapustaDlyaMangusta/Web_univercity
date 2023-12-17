@@ -3,7 +3,7 @@ import plusIcon from '../assets/images/plus.png'
 import minusIcon from '../assets/images/minus.png'
 import { InputBase } from '@mui/material';
 
-const QuantityInputControl = ({ value , setStateFunc }) => {
+const QuantityInputControl = ({ value , setStateFunc, onPlus = null, onMinus = null}) => {
   const actionButtonClassName = 'flex justify-center items-center text-center rounded-full text-orange-500 font-bolt text-3xl hover:bg-orange-100 hover:bg-opacity-50';
 
   const changeHandler = (event) => {
@@ -26,9 +26,19 @@ const QuantityInputControl = ({ value , setStateFunc }) => {
       return;
     }
 
+    if(onMinus != null){
+      onMinus();
+    }
+
     setStateFunc(prevState => prevState - 1);
   }
-  const plusHandler = () => setStateFunc(prevState => prevState + 1);
+  const plusHandler = () => {
+    if(onPlus != null){
+      onPlus();
+    }
+
+    return setStateFunc(prevState => prevState + 1);
+  };
 
   return (
     <div className='quantity-input-control flex w-full py-2 px-4 border border-orange-500 rounded-2xl gap-4 items-center' style={{height: '60px'}}>

@@ -3,8 +3,6 @@ import { Backdrop, CircularProgress } from '@mui/material';
 import { createPortal } from 'react-dom';
 
 const Loader = ({ isLoading }) => {
-  debugger;
-
   return createPortal((
     <div>
       <Backdrop
